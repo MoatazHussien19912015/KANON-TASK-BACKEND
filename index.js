@@ -48,6 +48,6 @@ app.use('/countries', countries_router);
 app.use('/auth', authentication_router);
 app.use('/gaming', gaming_router);
 
-app.listen(4000, ()=>{
+app.listen(process.env.PORT || 4000, ()=>{
     console.log('server is on');
 });
