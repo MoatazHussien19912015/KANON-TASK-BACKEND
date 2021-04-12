@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const db = require('./config/keys').mongodb;
 const mongoose = require('mongoose');
 const axios = require('axios');
@@ -40,8 +41,10 @@ app.all("/*", function(req, res, next){
   }).catch(err=>console.log(err));
 });
 
+
+app.use(express.static(path.join(__dirname, 'public',  'build')));
 app.get('/', (req, res) => {
-    res.send('hello');
+    res.sendFile(path.join(__dirname, 'public', 'build', 'index.html'));
 });
 
 app.use('/countries', countries_router);
